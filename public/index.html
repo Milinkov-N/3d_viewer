@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebGL Demo</title>
+    <style>
+      canvas {
+        display: flex;
+        border: 1px solid black;
+        margin: 0 auto;
+      }
+    </style>
+    <script src="js/main.js" defer></script>
+  </head>
+  <body>
+    <label for="angle">Angle of Rotation</label>
+    <input id="angle" type="range" min="0" max="360" step="0.05" value="0" />
+
+    <label for="scale">Scale</label>
+    <input id="scale" type="range" min="0" max="1" step="0.05" value="1" />
+
+    <canvas id="webgl" width="720" height="480">
+      It's seems your browser doesn't support WebGL
+    </canvas>
+
+    <script id="v-shader" type="x-shader/x-vertex">
+      attribute vec2 a_position;
+
+      uniform mat3 u_matrix;
+
+      void main() {
+        gl_Position = vec4((u_matrix * vec3(a_position, 1)).xy, 0, 1);
+        gl_PointSize = 6.0;
+      }
+    </script>
+    <script id="f-shader" type="x-shader/x-fragment">
+      precision mediump float;
+      uniform vec4 u_color;
+      void main() { gl_FragColor = u_color; }
+    </script>
+  </body>
+</html>
