@@ -25,7 +25,7 @@
       It's seems your browser doesn't support WebGL
     </canvas>
 
-    <script id="v-shader" type="x-shader/x-vertex">
+    <script id="v-shader-2d" type="x-shader/x-vertex">
       attribute vec2 a_position;
 
       uniform mat3 u_matrix;
@@ -35,6 +35,17 @@
         gl_PointSize = 6.0;
       }
     </script>
+    <script id="v-shader-3d" type="x-shader/x-vertex">
+      attribute vec4 a_position;
+
+      uniform mat4 u_matrix;
+
+      void main() {
+        gl_Position = u_matrix * a_position;
+        gl_PointSize = 4.0;
+      }
+    </script>
+
     <script id="f-shader" type="x-shader/x-fragment">
       precision mediump float;
       uniform vec4 u_color;

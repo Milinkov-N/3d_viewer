@@ -1,4 +1,4 @@
-import { Mat3Buffer } from './matrix'
+import { Mat3Buffer, Mat4Buffer } from './matrix'
 
 export type Ctx = WebGLRenderingContext
 export type Rgba = [number, number, number, number]
@@ -20,7 +20,7 @@ export type Vec2 = [number, number]
 export type Vec3 = [number, number, number]
 export type Vec4 = [number, number, number, number]
 
-export type UniformType = number | Vec2 | Vec3 | Vec4 | Mat3Buffer
+export type UniformType = number | Vec2 | Vec3 | Vec4 | Mat3Buffer | Mat4Buffer
 
 export interface IUniforms {
   [key: string]: UniformType
@@ -81,6 +81,9 @@ export function setUniforms(
           break
         case 9:
           ctx.uniformMatrix3fv(location, false, uniform)
+          break
+        case 16:
+          ctx.uniformMatrix4fv(location, false, uniform)
           break
       }
     }
